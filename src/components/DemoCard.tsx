@@ -5,10 +5,20 @@ type Props = {
 
 export default function DemoCard({ title, description }: Props) {
   return (
-    <div className="bg-zinc-900 p-6 rounded-lg border border-zinc-800">
-      <h3 className="text-xl text-white font-semibold">{title}</h3>
-      <p className="mt-3 text-gray-400">{description}</p>
-      <button className="mt-6 bg-indigo-600 px-4 py-2 rounded text-white">
+    <div className={`
+      bg-card p-6 rounded-lg  border border-zinc-800
+      hover:border-primary/50 transition-all
+    `}>
+      <h3 className="text-xl font-semibold text-foreground">{title}</h3>
+      <p className="mt-3 text-muted-foreground">{description}</p>
+      <button className={`
+        btn-base
+        mt-6 bg-primary hover:bg-indigo-500
+        px-5 py-2.5 rounded-lg text-dark 
+        font-medium transition-colors
+        disabled:opacity-50
+        cursor-pointer
+      `}>
         Try Demo
       </button>
     </div>

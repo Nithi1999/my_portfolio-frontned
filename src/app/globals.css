@@ -1,26 +1,72 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer theme {
   :root {
+    --background: #ffffff;
+    --foreground: #0f172a;          /* slate-900 */
+    --card: #ffffff;
+    --card-border: #e2e8f0;         /* slate-200 */
+    --muted: #f1f5f9;               /* slate-100 */
+    --muted-foreground: #64748b;    /* slate-500 */
+    --primary: #6366f1;             /* indigo-500 */
+    --primary-dark: #4f46e5;        /* indigo-600 */
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+  }
+
+  [data-theme="dark"] {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: #f1f5f9;          /* slate-100 */
+    --card: #111827;                /* gray-900 */
+    --card-border: #1e293b;         /* slate-800 */
+    --muted: #1e293b;               /* slate-800 */
+    --muted-foreground: #94a3b8;    /* slate-400 */
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;      /* slate-300 */
+    --text-muted: #94a3b8;          /* slate-400 */
+    --border: #1e293b;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Apply variables to body/html */
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    transition: background-color 0.35s ease, color 0.35s ease;
+    h1 { @apply text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight; }
+    h2 { @apply text-2xl sm:text-3xl font-semibold; }
+    h3 { @apply text-xl font-semibold; }
+    p, li { @apply text-base sm:text-lg leading-relaxed; }
+  }
+}
+
+/* Optional: create reusable utility classes (these become real Tailwind classes) */
+@layer utilities {
+  .bg-background     { background-color: var(--background); }
+  .text-foreground   { color: var(--foreground); }
+  .bg-card           { background-color: var(--card); }
+  .border-card       { border-color: var(--card-border); }
+  .text-primary      { color: var(--text-primary); }
+  .text-secondary    { color: var(--text-secondary); }
+  .text-muted        { color: var(--text-muted); }
+  .text-muted-foreground { color: var(--muted-foreground); }
+  .bg-muted          { background-color: var(--muted); }
+  .border-border     { border-color: var(--border); }
+  .btn-base {
+    @apply px-6 py-3 rounded-xl font-medium transition-all duration-200;
+    @apply active:scale-95 touch-manipulation;
+    min-height: 48px;
+    min-width: 120px;
+  }
+  .btn-nav {
+    @apply px-1 py-3 rounded font-medium transition-all duration-100;
+    @apply active:scale-95 touch-manipulation;
+    min-height: 1px;
+    min-width: 1px;
+  }
 }
