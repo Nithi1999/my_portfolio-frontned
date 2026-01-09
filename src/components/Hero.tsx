@@ -1,3 +1,4 @@
+import Link from "next/link";
 export default function Hero() {
   return (
     <section className="text-center py-32 md:py-40">
@@ -11,12 +12,12 @@ export default function Hero() {
       </p>
 
       <div className="mt-10 flex flex-col sm:flex-row justify-center gap-5">
-        <a className="border border-border hover:bg-indigo-500  px-8 py-4 rounded-xl text-foreground font-medium transition-colors" href="/demos">
+        <Link href="/demos" className="btn-hero border border-border hover:bg-indigo-500  px-8 py-4 rounded-xl text-foreground font-medium transition-colors">
           Live AI Demos
-        </a>
-        <a className="border border-border hover:bg-indigo-500  px-8 py-4 rounded-xl text-foreground font-medium transition-colors" href="/projects">
+        </Link>
+        <Link href="/projects" className="btn-hero border border-border hover:bg-indigo-500  px-8 py-4 rounded-xl text-foreground font-medium transition-colors">
           View Projects
-        </a>
+        </Link>
       </div>
     </section>
   );

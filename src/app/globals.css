@@ -69,4 +69,10 @@
     min-height: 1px;
     min-width: 1px;
   }
+  .btn-hero {
+    @apply px-8 py-4 rounded-xl font-medium transition-colors duration-100;
+    @apply active:scale-95 touch-manipulation;
+    min-height: 1px;
+    min-width: 1px;
+  }
 }
