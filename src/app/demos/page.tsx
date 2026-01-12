@@ -4,12 +4,14 @@ import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import DemoCard from "@/components/DemoCard";
 import { parseResume } from "@/services/resumeParser";
+import ComingSoonModal from "@/components/ComingSoonModal";
 
 export default function Demos() {
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<any>(null);
   const [error, setError] = useState("");
+  const [showComingSoon, setShowComingSoon] = useState(false);
 
   const handleParse = async () => {
     if (!file) return;
@@ -29,6 +31,13 @@ export default function Demos() {
   };
 
   return (
+    <>
+     <ComingSoonModal
+      open={showComingSoon}
+      onClose={() => setShowComingSoon(false)}
+      title="Demo Under Maintenance"
+      description="This AI demo is currently being improved and will be available soon."
+    />
     <main className="min-h-screen bg-background px-6 md:px-10">
       <Navbar />
 
@@ -98,18 +107,20 @@ export default function Demos() {
           )}
         </div>
 
-        {/* Upcoming Demos */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-16">
           <DemoCard
             title="Resume vs JD Matcher"
             description="Compare a resume against a job description using contextual embeddings."
+            onClick={() => setShowComingSoon(true)}
           />
           <DemoCard
             title="LLM Resume Feedback"
             description="Get AI-generated feedback to improve resumes."
+            onClick={() => setShowComingSoon(true)}
           />
         </div>
       </div>
     </main>
+  </>
   );
 }
