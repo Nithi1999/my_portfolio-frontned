@@ -15,7 +15,23 @@ export default function Resume() {
         </p>
 
         <a
-          href="/resume.pdf"
+          href="/Nithin_A.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="
+            btn-base
+            inline-block mt-6
+            bg-primary hover:bg-indigo-500
+            text-dark font-medium
+            px-6 py-2.5 rounded-lg
+            transition-colors
+          "
+        >
+          View Resume
+        </a>
+
+        <a
+          href="/Nithin_A.pdf"
           download
           className="
             btn-base
