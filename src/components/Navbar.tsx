@@ -70,7 +70,7 @@ export default function Navbar() {
         <aside
             className={`
               fixed top-0 right-0 z-50
-              h-[50%] w-[60%] max-w-sm
+              h-half w-[60%] max-w-sm
               bg-background/70
               backdrop-blur-3xl
               shadow-2xl
