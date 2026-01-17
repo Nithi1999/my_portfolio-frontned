@@ -20,11 +20,13 @@ export default function Resume() {
           rel="noopener noreferrer"
           className="
             btn-base
-            inline-block mt-6
+            inline-block mt-2
             bg-primary hover:bg-indigo-500
             text-dark font-medium
             px-6 py-2.5 rounded-lg
             transition-colors
+            border border-border
+            shadow-lg shadow-indigo-500/20
           "
         >
           View Resume
@@ -40,6 +42,8 @@ export default function Resume() {
             text-dark font-medium
             px-6 py-2.5 rounded-lg
             transition-colors
+            border border-border
+            shadow-lg shadow-indigo-500/20
           "
         >
           Download Resume

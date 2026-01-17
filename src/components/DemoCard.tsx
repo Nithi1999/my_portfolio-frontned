@@ -21,6 +21,8 @@ export default function DemoCard({ title, description, onClick }: Props) {
         font-medium transition-colors
         disabled:opacity-50
         cursor-pointer
+        border border-border
+        shadow-lg shadow-indigo-500/20
       `}>
         Try Demo
       </button>

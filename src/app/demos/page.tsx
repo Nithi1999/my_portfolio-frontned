@@ -84,6 +84,8 @@ export default function Demos() {
                 disabled:opacity-50 disabled:cursor-not-allowed
                 cursor-pointer
                 transition-colors
+                border border-border
+                shadow-lg shadow-indigo-500/20
               "
             >
               {loading ? "Processing..." : "Parse Resume"}

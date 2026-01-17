@@ -11,7 +11,6 @@ export default function Navbar() {
   const navLinks = [
     { href: "/projects", label: "Projects" },
     { href: "/demos", label: "Demos" },
-    { href: "/architecture", label: "Architecture" },
     { href: "/resume", label: "Resume" },
     { href: "/contact", label: "Contact" },
   ];
@@ -25,7 +24,11 @@ export default function Navbar() {
         sticky top-0 z-50
         border-b border-border
       `}>
-        <Link href="/" className="text-xl font-bold text-primary">Nithin A</Link>
+        <Link href="/" className="text-xl font-bold bg-[length:200%_200%]
+                bg-gradient-to-r
+                from-indigo-400 via-violet-500 to-fuchsia-500
+                bg-clip-text text-transparent
+                animate-gradient">Nithin A</Link>
 
         <div className="flex items-center gap-6 md:gap-8">
           <div className="hidden md:flex items-center gap-6 text-secondary">
@@ -34,9 +37,6 @@ export default function Navbar() {
             </Link>
             <Link href="/demos" className="btn-nav hover:text-primary transition-colors">
               Demos
-            </Link>
-            <Link href="/architecture" className="btn-nav hover:text-primary transition-colors">
-              Architecture
             </Link>
             <Link href="/resume" className="btn-nav hover:text-primary transition-colors">
               Resume
