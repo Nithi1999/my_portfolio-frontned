@@ -5,7 +5,18 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Nithin A - Backend & AI Engineer",
-  description: "Backend & AI Engineer portfolio",
+  description: "Personal portfolio site",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
+  openGraph: {
+    title: "Nithin A - Backend & AI Engineer",
+    description: "Personal portfolio site",
+    images: ["/og-image.png"],
+    type: "website",
+  },
 };
 
 export default function RootLayout({
