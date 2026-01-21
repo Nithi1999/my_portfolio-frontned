@@ -5,6 +5,8 @@ import Navbar from "@/components/Navbar";
 import DemoCard from "@/components/DemoCard";
 import { parseResume } from "@/services/resumeParser";
 import ComingSoonModal from "@/components/ComingSoonModal";
+import ResumeResult from "@/components/ResumeResult";
+import { downloadResumePdf } from "@/services/downloadPdf";
 
 export default function Demos() {
   const [file, setFile] = useState<File | null>(null);
@@ -96,15 +98,33 @@ export default function Demos() {
             <p className="mt-6 text-red-500 font-medium">{error}</p>
           )}
 
-          {result && (
-            <div className="mt-8">
-              <pre className="
+          {result?.data && (
+            <div className="mt-10 space-y-8">
+              <div
+                className="
                 bg-muted p-5 rounded-lg overflow-auto
                 text-sm text-foreground font-mono
                 max-h-[500px]
-              ">
-                {JSON.stringify(result, null, 2)}
-              </pre>
+                "
+              >
+                <ResumeResult data={result.data} />
+              </div>
+
+              <div className="flex justify-start">
+                <button
+                  onClick={() => downloadResumePdf(result.data)}
+                  className="
+                    btn-hero
+                    bg-primary text-white
+                    hover:bg-primary-dark
+                    shadow-lg shadow-indigo-500/30
+                    cursor-pointer
+                    border border-border
+                  "
+                >
+                  Download PDF Report
+                </button>
+              </div>
             </div>
           )}
         </div>
