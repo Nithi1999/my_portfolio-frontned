@@ -16,7 +16,7 @@ export default function DemoCard({ title, description, onClick }: Props) {
       onClick={onClick}
       className={`
         btn-base
-        mt-6 bg-primary hover:bg-indigo-500
+        mt-6 bg-primary
         px-5 py-2.5 rounded-lg text-dark 
         font-medium transition-colors
         disabled:opacity-50

@@ -58,10 +58,12 @@ export default function ComingSoonModal({
           className="
             btn-base
             mt-6 px-6 py-2.5 rounded-lg
-            bg-primary hover:bg-indigo-500
+            bg-primary
             text-dark font-medium
             transition-colors
             cursor-pointer
+            border border-border
+            shadow-lg shadow-indigo-500/20
           "
         >
           Got it

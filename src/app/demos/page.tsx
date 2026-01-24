@@ -14,6 +14,7 @@ export default function Demos() {
   const [result, setResult] = useState<any>(null);
   const [error, setError] = useState("");
   const [showComingSoon, setShowComingSoon] = useState(false);
+  const [pdfLoading, setPdfLoading] = useState(false);
 
   const handleParse = async () => {
     if (!file) return;
@@ -80,7 +81,7 @@ export default function Demos() {
               disabled={loading || !file}
               className="
                 btn-base
-                mt-2 bg-primary hover:bg-indigo-500 
+                mt-2 bg-primary
                 text-dark font-medium
                 px-6 py-2.5 rounded-lg
                 disabled:opacity-50 disabled:cursor-not-allowed
@@ -112,17 +113,39 @@ export default function Demos() {
 
               <div className="flex justify-start">
                 <button
-                  onClick={() => downloadResumePdf(result.data)}
-                  className="
+                  onClick={() =>
+                    downloadResumePdf(
+                      result.data,
+                      () => setPdfLoading(true),
+                      () => setPdfLoading(false),
+                      (msg) => alert(msg)
+                    )
+                  }
+                  disabled={pdfLoading}
+                  className={`
                     btn-hero
-                    bg-primary text-white
-                    hover:bg-primary-dark
+                    flex items-center gap-3
+                    bg-primary text-dark 
                     shadow-lg shadow-indigo-500/30
                     cursor-pointer
                     border border-border
-                  "
+                    transition-all
+                    disabled:opacity-50 disabled:cursor-not-allowed
+                    ${pdfLoading ? "opacity-60 cursor-not-allowed" : ""}
+                  `}
                 >
-                  Download PDF Report
+                  {pdfLoading && (
+                    <span
+                      className="
+                        w-4 h-4
+                        border-2 border-white/60 border-t-white
+                        rounded-full
+                        animate-spin
+                      "
+                    />
+                  )}
+
+                  {pdfLoading ? "Generating PDF..." : "Download PDF Report"}
                 </button>
               </div>
             </div>

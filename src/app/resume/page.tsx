@@ -21,7 +21,7 @@ export default function Resume() {
           className="
             btn-base
             inline-block mt-2
-            bg-primary hover:bg-indigo-500
+            bg-primary
             text-dark font-medium
             px-6 py-2.5 rounded-lg
             transition-colors
@@ -38,7 +38,7 @@ export default function Resume() {
           className="
             btn-base
             inline-block mt-6
-            bg-primary hover:bg-indigo-500
+            bg-primary
             text-dark font-medium
             px-6 py-2.5 rounded-lg
             transition-colors
