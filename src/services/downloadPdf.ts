@@ -9,7 +9,7 @@ export async function downloadResumePdf(
   try {
     onStart?.();
 
-    const res = await fetch(`${API_BASE}/api/generatepdf`, {
+    const res = await fetch(`${API_BASE}/api/generatepdf/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

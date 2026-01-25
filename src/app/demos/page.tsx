@@ -15,6 +15,10 @@ export default function Demos() {
   const [error, setError] = useState("");
   const [showComingSoon, setShowComingSoon] = useState(false);
   const [pdfLoading, setPdfLoading] = useState(false);
+  const [pdfEstimate, setPdfEstimate] = useState<string | null>(null);
+  const [showPdfEstimate, setShowPdfEstimate] = useState(false);
+  const [pdfEstimateSeconds, setPdfEstimateSeconds] = useState<number | null>(null);
+  const [countdown, setCountdown] = useState<number | null>(null);
 
   const handleParse = async () => {
     if (!file) return;
@@ -22,10 +26,14 @@ export default function Demos() {
     setLoading(true);
     setError("");
     setResult(null);
+    setPdfEstimate(null);
 
     try {
       const data = await parseResume(file);
       setResult(data);
+      if (data.pdf_estimate) {
+        setPdfEstimateSeconds(Math.max(data.pdf_estimate, 8));
+    }
     } catch (err) {
       setError("Failed to parse resume");
     } finally {
@@ -49,7 +57,6 @@ export default function Demos() {
           Live AI Demos
         </h1>
 
-        {/* Active Demo */}
         <div className="mt-12 bg-card p-7 rounded-lg border border-zinc-800">
           <h2 className="text-2xl font-semibold text-foreground">
             Resume Parser (Live)
@@ -113,14 +120,33 @@ export default function Demos() {
 
               <div className="flex justify-start">
                 <button
-                  onClick={() =>
+                  onClick={() => {
+                    setShowPdfEstimate(true); 
+                    setCountdown(pdfEstimateSeconds ?? 8);
+                    const interval = setInterval(() => {
+                      setCountdown((prev) => {
+                        if (!prev || prev <= 1) {
+                          clearInterval(interval);
+                          return null;
+                        }
+                        return prev - 1;
+                      });
+                    }, 1000);
                     downloadResumePdf(
                       result.data,
                       () => setPdfLoading(true),
-                      () => setPdfLoading(false),
-                      (msg) => alert(msg)
-                    )
-                  }
+                      () => {
+                        setPdfLoading(false);
+                        setShowPdfEstimate(false);
+                        setCountdown(null);
+                      },
+                      (msg) => {
+                        setPdfLoading(false);
+                        setShowPdfEstimate(false);
+                        alert(msg);
+                      }
+                    );
+                  }}
                   disabled={pdfLoading}
                   className={`
                     btn-hero
@@ -131,7 +157,6 @@ export default function Demos() {
                     border border-border
                     transition-all
                     disabled:opacity-50 disabled:cursor-not-allowed
-                    ${pdfLoading ? "opacity-60 cursor-not-allowed" : ""}
                   `}
                 >
                   {pdfLoading && (
@@ -147,6 +172,11 @@ export default function Demos() {
 
                   {pdfLoading ? "Generating PDF..." : "Download PDF Report"}
                 </button>
+                {pdfLoading && showPdfEstimate && countdown !== null && (
+                  <p className="text-sm text-foreground font-mono">
+                    ⏳ Generating PDF… {countdown > 2 ? `${countdown}s remaining` : "Almost done…"}
+                  </p>
+                )}
               </div>
             </div>
           )}
